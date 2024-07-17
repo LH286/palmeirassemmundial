@@ -1,0 +1,85 @@
+/* Estilos CSS para o documento */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.profile-picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.profile-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-content,
+.right-content {
+    flex: 1;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.section-content {
+    margin-left: 20px; /* Ajusta a margem do conteúdo da seção */
+}
+
+.skills .section-content,
+.summary .section-content {
+    padding-left: 0; /* Remove o padding padrão das listas */
+}
+
+.skills .section-content ul {
+    list-style-type: none; /* Remove as bolinhas das listas */
+    padding-left: 0; /* Remove o padding padrão das listas */
+}
+
+.academic-experience .section-content,
+.academic-life .section-content {
+    list-style-type: disc; /* Define bolinhas para as listas */
+    padding-left: 20px; /* Adiciona um espaço antes das bolinhas */
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
