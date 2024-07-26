@@ -1,0 +1,138 @@
+/* Define a fonte padrão para toda a página */
+body {
+    font-family: 'Roboto', sans-serif; /* Fonte moderna e limpa */
+    background: url('https://wallpapers.com/images/featured/dope-rick-e-morty-xf18w6xojcosnn64.webp') no-repeat center center fixed; /* Imagem de fundo */
+    background-size: cover; /* Cobre toda a tela com a imagem de fundo */
+    color: #f4f4f4; /* Cor do texto clara para contraste */
+    margin: 0; /* Remove margens padrão do navegador */
+    padding: 0; /* Remove padding padrão do navegador */
+    display: flex; /* Usa flexbox para centralizar o conteúdo */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    height: 100vh; /* Altura total da visualização */
+}
+
+/* Estiliza o contêiner principal */
+.container {
+    background: rgba(172, 172, 172, 0.479); /* Fundo branco com opacidade para efeito de vidro */
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 6px 12px rgba(10, 10, 10, 0.2); /* Sombra mais pronunciada */
+    padding: 30px; /* Espaçamento interno */
+    max-width: 600px; /* Largura máxima do contêiner */
+    width: 100%; /* Largura total disponível */
+    text-align: center; /* Alinha o texto ao centro */
+    position: relative; /* Permite posicionamento absoluto dos elementos filhos */
+}
+
+/* Estiliza o título dentro do contêiner */
+.container h1 {
+    color: #ffffff; /* Cor do texto branca */
+    font-size: 36px; /* Tamanho da fonte do título */
+    font-weight: 700; /* Fonte mais espessa */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8), /* Brilho branco pequeno */
+        0 0 10px rgba(255, 255, 255, 0.8), /* Brilho branco médio */
+        0 0 15px rgba(255, 0, 0, 0.6), /* Brilho vermelho */
+        0 0 20px rgba(0, 255, 0, 0.6), /* Brilho verde */
+        0 0 25px rgba(0, 0, 255, 0.6), /* Brilho azul */
+        0 0 30px rgba(255, 255, 0, 0.6); /* Brilho amarelo */
+    animation: colorChange 3s infinite; /* Aplica a animação de mudança de cor */
+}
+
+/* Animação para mudar a cor do brilho */
+@keyframes colorChange {
+    0% {
+        text-shadow: 
+            0 0 5px rgba(255, 0, 0, 0.6), /* Brilho vermelho */
+            0 0 10px rgba(255, 0, 0, 0.6), 
+            0 0 15px rgba(255, 0, 0, 0.6),
+            0 0 20px rgba(255, 0, 0, 0.6),
+            0 0 25px rgba(255, 0, 0, 0.6),
+            0 0 30px rgba(255, 0, 0, 0.6);
+    }
+    25% {
+        text-shadow: 
+            0 0 5px rgba(0, 255, 0, 0.6), /* Brilho verde */
+            0 0 10px rgba(0, 255, 0, 0.6), 
+            0 0 15px rgba(0, 255, 0, 0.6),
+            0 0 20px rgba(0, 255, 0, 0.6),
+            0 0 25px rgba(0, 255, 0, 0.6),
+            0 0 30px rgba(0, 255, 0, 0.6);
+    }
+    50% {
+        text-shadow: 
+            0 0 5px rgba(0, 0, 255, 0.6), /* Brilho azul */
+            0 0 10px rgba(0, 0, 255, 0.6), 
+            0 0 15px rgba(0, 0, 255, 0.6),
+            0 0 20px rgba(0, 0, 255, 0.6),
+            0 0 25px rgba(0, 0, 255, 0.6),
+            0 0 30px rgba(0, 0, 255, 0.6);
+    }
+    75% {
+        text-shadow: 
+            0 0 5px rgba(255, 255, 0, 0.6), /* Brilho amarelo */
+            0 0 10px rgba(255, 255, 0, 0.6), 
+            0 0 15px rgba(255, 255, 0, 0.6),
+            0 0 20px rgba(255, 255, 0, 0.6),
+            0 0 25px rgba(255, 255, 0, 0.6),
+            0 0 30px rgba(255, 255, 0, 0.6);
+    }
+    100% {
+        text-shadow: 
+            0 0 5px rgba(255, 0, 0, 0.6), /* Retorno ao brilho vermelho */
+            0 0 10px rgba(255, 0, 0, 0.6), 
+            0 0 15px rgba(255, 0, 0, 0.6),
+            0 0 20px rgba(255, 0, 0, 0.6),
+            0 0 25px rgba(255, 0, 0, 0.6),
+            0 0 30px rgba(255, 0, 0, 0.6);
+    }
+}
+
+/* Estiliza o rótulo (label) */
+label {
+    display: block; /* Exibe o label como bloco para ocupar toda a largura disponível */
+    margin-bottom: 10px; /* Espaço abaixo do label */
+    font-size: 18px; /* Tamanho da fonte do label */
+    color: #000000; /* Cor do texto do label */
+}
+
+/* Estiliza o campo de entrada */
+input[type="text"] {
+    width: calc(100% - 22px); /* Largura do campo, subtraindo o padding e a borda */
+    padding: 12px; /* Espaçamento interno do campo */
+    border: 2px solid #030303; /* Borda preta */
+    border-radius: 8px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte do campo */
+    color: #333; /* Cor do texto no campo */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+    margin-bottom: 20px; /* Espaço abaixo do campo */
+}
+
+/* Estiliza o botão */
+button {
+    background-color: #000000; /* Cor de fundo preta */
+    color: #ffffff; /* Cor do texto branco */
+    border: none; /* Remove a borda padrão */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 12px 24px; /* Espaçamento interno do botão */
+    font-size: 16px; /* Tamanho da fonte do botão */
+    cursor: pointer; /* Muda o cursor para uma mãozinha ao passar sobre o botão */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave para a cor de fundo e efeito de transformação */
+}
+
+/* Estiliza o botão ao passar o mouse */
+button:hover {
+    background-color: #33c0f8; /* Cor de fundo azul ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o botão ao passar o mouse */
+}
+
+/* Estiliza a área onde os detalhes do personagem são exibidos */
+.character-details {
+    margin-top: 20px; /* Espaço acima da área de detalhes */
+    text-align: left; /* Alinha o texto à esquerda */
+    color: #000000; /* Cor do texto dos detalhes */
+}
+
+/* Estiliza a imagem do personagem */
