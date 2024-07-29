@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Complexo RJ</title>
+    <style>
+        body {
+            height: 100%;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        .menu {
+            width: 100%;
+            background: #333;
+            overflow: visible;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s, color 0.4s;
+        }
+
+        .menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .menu a.active {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .menu::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .dropdown {
+            position: relative;
+            float: left;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 1005;
+            top: 48px;
+            left: 50%;
+            /* Move para o centro do elemento pai */
+            width: 200px;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            padding: 12px 6px;
+        }
+
+        .submenu a {
+            color: white;
+            padding: 20px 0;
+            text-decoration: none;
+            display: block;
+            /* Mantém o display como block para os links */
+            text-align: center;
+            /* Centraliza o texto horizontalmente */
+            white-space: nowrap;
+            border-radius: 100px;
+            margin: 0px 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%;
+            /* Permite que o link ocupe toda a largura disponível */
+            max-width: 1000px;
+            /* Define uma largura máxima para os links */
+        }
+
+        .submenu a:hover {
+            background-color: #555;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown:hover .submenu {
+            display: block;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown .submenu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+        }
+
+        .dropdown:hover .submenu {
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .snowflake {
+            position: fixed;
+            top: 0;
+            font-size: 1rem;
+            color: #fff;
+            user-select: none;
+            pointer-events: none;
+            animation: snowfall linear infinite;
+            transform-origin: 0 0;
+            z-index: 1;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .container-calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to right, #ffffff, #f0f0f0);
+            margin: 0;
+            padding: 0;
+            background-attachment: fixed;
+            padding-top: 80px;
+
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            width: 100%;
+        }
+
+        .items-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 16px;
+            max-height: 60vh;
+            overflow-y: auto;
+            width: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            background-color: #fefefe;
+            border-radius: 24px;
+            border: 2px solid #ddd;
+            justify-content: center;
+            align-content: start;
+            margin: 10px;
+        }
+
+        /* Estilização da barra de rolagem */
+        .items-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .items-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .items-container::-webkit-scrollbar-thumb {
+            background: #808080;
+        }
+
+        .items-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+
+        .item {
+            border: 2px solid #dddddd;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            height: 120px;
+            transition: transform 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        .item-name {
+            margin: 5px 0;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .item-price {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        .calculator {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border: none;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+            margin: 10px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            /* Alinha o conteúdo no topo */
+        }
+
+        .total {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            height: 30px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 5px;
+            text-align: center;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]:focus {
+            border-color: #808080;
+        }
+
+        .logo-container img {
+            margin-top: 0px;
+            margin-bottom: 20px;
+            /* Ajuste o valor conforme necessário */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: transform 1.3s;
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.08);
+        }
+
+        #categorySelect {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        #categorySelect:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .selected-items-container {
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 18px;
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 10px;
+        }
+
+        .selected-items-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .selected-items-title {
+            background-color: #808080;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: center;
+            display: inline-block;
+            /* Garante que o tamanho do contêiner se ajuste ao conteúdo */
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #searchBox {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .contrast-toggle {
+            float: right;
+            padding: 14px 20px;
+            cursor: pointer;
+        }
+
+        .contrast-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            transition: fill 0.3s;
+        }
+
+        .contrast-toggle:hover svg {
+            fill: #4caf50;
+        }
+
+        /* Estilos de alto contraste */
+        .high-contrast {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+
+        .high-contrast body {
+            background: #000 !important;
+            color: #fff !important;
+        }
+
+        .high-contrast .container-calculator {
+            background: linear-gradient(to right, #000000, #111111) !important;
+        }
+
+        .high-contrast .items-container,
+        .high-contrast .selected-items-container,
+        .high-contrast .calculator,
+        .high-contrast .search-container,
+        .high-contrast .menu,
+        .high-contrast .menu a,
+        .high-contrast input[type="number"],
+        .high-contrast select,
+        .high-contrast button {
+            background-color: #2e2e2e !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+
+        .high-contrast .item {
+            background-color: #222 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+
+        .high-contrast .item-name,
+        .high-contrast .item-price {
+            color: #fff !important;
+        }
+
+        .high-contrast .menu a:hover {
+            background-color: #555 !important;
+        }
+
+        .high-contrast input[type="number"],
+        .high-contrast select,
+        .high-contrast button {
+            background-color: #333 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+
+        .high-contrast .logo-container img {
+            border-color: #fff !important;
+        }
+
+        .high-contrast .snowflake {
+            color: #fff !important;
+        }
+
+        .high-contrast .selected-items-title {
+            background-color: #555 !important;
+            color: #fff !important;
+        }
+
+        .high-contrast .item:hover {
+            transform: scale(1.05);
+            background-color: #444 !important;
+        }
+
+        .link-with-emoji {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            /* Remove underline from link */
+            color: inherit;
+            /* Inherit text color */
+        }
+
+        .link-with-emoji img {
+            margin-right: 8px;
+            /* Space between the image and the text */
+            vertical-align: middle;
+            /* Align the image with the middle of the text */
+            transform: translateY(-2px);
+            /* Adjust the vertical position of the image */
+        }
+
+        .view-counter {
+            position: fixed;
+            top: 65px;
+            right: 20px;
+            font-size: 1rem;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+        }
+
+        .view-counter img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        /* Estilos globais para dispositivos móveis */
+        @media only screen and (max-width: 768px) {
+
+            /* Menu e submenu */
+            .menu a,
+            .submenu a {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+
+            /* Transforma o menu em um menu hambúrguer */
+            .dropdown {
+                display: none;
+                /* Esconde os itens do menu padrão */
+                position: static;
+            }
+
+            .menu-icon {
+                display: block;
+                /* Mostra o ícone do menu hambúrguer */
+                cursor: pointer;
+            }
+
+            .menu-icon:hover {
+                background-color: #444;
+                /* Muda a cor de fundo ao passar o mouse */
+            }
+
+            /* Ajusta o logo para telas menores */
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Ajusta a largura e organização dos itens */
+            .items-container {
+                grid-template-columns: repeat(2,
+                        1fr);
+                /* Organiza os itens em duas colunas */
+                gap: 10px;
+            }
+
+            .item {
+                width: 100%;
+                /* Faz cada item ocupar toda a largura da coluna */
+                height: auto;
+                /* Altura automática para acomodar o conteúdo */
+            }
+
+            /* Ajustes para a calculadora e containers relacionados */
+            .calculator,
+            .selected-items-container {
+                max-width: 300px;
+
+            }
+
+            .items-container {
+                width: 100%;
+                /* Usa a largura total disponível */
+                margin: 10px 0;
+                /* Aumenta a margem entre os elementos */
+                padding: 15px;
+                /* Aumenta o padding para melhor visualização */
+            }
+
+            /* Botões e inputs */
+            input[type="number"],
+            #searchBox,
+            #categorySelect {
+                width: 90%;
+                /* Aumenta a largura dos inputs para melhor acesso */
+            }
+
+            button {
+                width: 100%;
+                /* Botões ocupam toda a largura disponível */
+            }
+
+            .main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .selected-items-title {
+                font-size: 1.0rem;
+                text-align: center;
+                display: inline-block;
+            }
+
+        }
+
+        @media only screen and (max-width: 480px) {
+
+            /* Ajustes específicos para telas muito pequenas */
+            .items-container {
+                grid-template-columns: 1fr;
+                /* Coloca todos os itens em uma coluna */
+            }
+
+            .menu,
+            .submenu {
+                width: 100%;
+                /* Garante que o menu use toda a largura da tela */
+            }
+        }
+
+        /* Estilos para o menu hambúrguer */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            padding: 14px 20px;
+            color: white;
+        }
+
+        .dropdown-content a {
+            text-align: left;
+            display: block;
+        }
+
+        @media only screen and (max-width: 768px) {
+
+            /* Menu em estilo hambúrguer para telas pequenas */
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                padding: 14px 20px;
+                color: white;
+                background-color: #333;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #333;
+                width: 100%;
+                left: 0;
+                top: 50px;
+                z-index: 1001;
+            }
+
+            .menu-icon.active+.dropdown-content {
+                display: block;
+            }
+
+            /* Ajustar o layout da calculadora e dos containers */
+            .items-container,
+            .calculator,
+            .selected-items-container {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .item {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Calendário responsivo */
+            .calendar {
+                grid-template-columns: repeat(7, 1fr);
+                padding: 5px;
+            }
+
+            .day {
+                height: 60px;
+                /* Menor altura para cada dia */
+                font-size: 0.8rem;
+                /* Texto menor dentro dos dias */
+            }
+
+            .day-name {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+
+            /* Ajustes adicionais para telas muito pequenas */
+            .menu a,
+            .submenu a {
+                padding: 8px;
+                font-size: 0.7rem;
+            }
+
+            .day {
+                height: 50px;
+                /* Ainda menor para telas muito pequenas */
+            }
+        }
+
+        @keyframes loading {
+            0% {
+                cy: 10;
+            }
+
+            25% {
+                cy: 3;
+            }
+
+            50% {
+                cy: 10;
+            }
+        }
+
+        canvas {
+            height: 100vh;
+            pointer-events: none;
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: #f4f7ff;
+            cursor: pointer;
+            font-family: "Quicksand", sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 40px;
+            outline: none;
+            overflow: hidden;
+            padding: 0 10px;
+            position: relative;
+            width: 190px;
+            -webkit-tap-highlight-color: transparent;
+            z-index: 1;
+            margin-top: 20px;
+            /* Ajuste de margem para espaçamento */
+        }
+
+        button::before {
+            background: #1f2335;
+            border-radius: 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset;
+            content: "";
+            display: block;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            transition: width 0.2s cubic-bezier(0.39, 1.86, 0.64, 1) 0.3s;
+            width: 100%;
+        }
+
+        button.ready .submitMessage svg {
+            opacity: 1;
+            top: 1px;
+            transition: top 0.4s ease 600ms, opacity 0.3s linear 600ms;
+        }
+
+        button.ready .submitMessage .button-text span {
+            top: 0;
+            opacity: 1;
+            transition: all 0.2s ease calc(var(--dr) + 600ms);
+        }
+
+        button.loading::before {
+            transition: width 0.3s ease;
+            width: 80%;
+        }
+
+        button.loading .loadingMessage {
+            opacity: 1;
+        }
+
+        button.loading .loadingCircle {
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-name: loading;
+            cy: 10;
+        }
+
+        button.complete .submitMessage svg {
+            top: -30px;
+            transition: none;
+        }
+
+        button.complete .submitMessage .button-text span {
+            top: -8px;
+            transition: none;
+        }
+
+        button.complete .loadingMessage {
+            top: 80px;
+        }
+
+        button.complete .successMessage .button-text span {
+            left: 0;
+            opacity: 1;
+            transition: all 0.2s ease calc(var(--d) + 1000ms);
+        }
+
+        button.complete .successMessage svg {
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.3s ease-in-out 1.4s;
+        }
+
+        .button-text span {
+            opacity: 0;
+            position: relative;
+        }
+
+        .message {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .message svg {
+            display: inline-block;
+            fill: none;
+            margin-right: 5px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
+
+        .submitMessage .button-text span {
+            top: 8px;
+            transition: all 0.2s ease var(--d);
+        }
+
+        .submitMessage svg {
+            color: #5c86ff;
+            margin-left: -1px;
+            opacity: 0;
+            position: relative;
+            top: 30px;
+            transition: top 0.4s ease, opacity 0.3s linear;
+            width: 14px;
+        }
+
+        .loadingMessage {
+            opacity: 0;
+            transition: opacity 0.3s linear 0.3s, top 0.4s cubic-bezier(0.22, 0, 0.41, -0.57);
+        }
+
+        .loadingMessage svg {
+            fill: #5c86ff;
+            margin: 0;
+            width: 22px;
+        }
+
+        .successMessage .button-text span {
+            left: 5px;
+            transition: all 0.2s ease var(--dr);
+        }
+
+        .successMessage svg {
+            color: #5cffa1;
+            stroke-dasharray: 20;
+            stroke-dashoffset: 20;
+            transition: stroke-dashoffset 0.3s ease-in-out;
+            width: 14px;
+        }
+
+        .loadingCircle:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .loadingCircle:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        /* Website Link */
+        .website-link {
+            background: #f8faff;
+            border-radius: 50px 0 0 50px;
+            bottom: 30px;
+            color: #324b77;
+            cursor: pointer;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            height: 34px;
+            filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.1));
+            padding: 0 20px 0 40px;
+            position: fixed;
+            right: 0;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .website-link__icon {
+            left: -10px;
+            position: absolute;
+            top: -12px;
+            width: 44px;
+        }
+
+        .website-link__name {
+            display: block;
+            font-size: 14px;
+            line-height: 14px;
+            margin: 5px 0 3px;
+        }
+
+        .website-link__last-name {
+            color: #55bada;
+        }
+
+        .website-link__message {
+            color: #8aa8c5;
+            display: block;
+            font-size: 7px;
+            line-height: 7px;
+        }
+
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 10px;
+            border-radius: 12px;
+            background: #fff;
+            padding: 20px 35px 20px 25px;
+            box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform: translateX(calc(100% + 30px));
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+            z-index: 1000;
+            word-wrap: break-word;
+            /* Quebra de palavras longas */
+            word-break: break-word;
+            /* Quebra de palavras longas */
+            white-space: normal;
+            /* Permite quebra de linha */
+        }
+
+
+        .toast.active {
+            transform: translateX(0%);
+        }
+
+        .toast .toast-content {
+            display: flex;
+            align-items: center;
+            /* Centraliza verticalmente o conteúdo */
+            gap: 15px;
+            /* Espaçamento entre ícone e texto */
+        }
+
+        .toast-content .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 35px;
+            width: 35px;
+            font-size: 20px;
+            border-radius: 50%;
+            background-color: #4070f4;
+            /* Cor padrão */
+            color: #fff;
+            flex-shrink: 0;
+            /* Impede que o ícone seja redimensionado */
+        }
+
+        .toast-content .message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Centraliza verticalmente o texto */
+            margin: 0;
+            word-wrap: break-word;
+            /* Permite quebra de linha */
+            word-break: break-word;
+            /* Permite quebra de linha */
+            white-space: normal;
+            /* Permite quebra de linha */
+            flex: 1;
+            /* Permite que o texto ocupe o espaço disponível */
+            padding-left: 10px;
+            /* Espaçamento extra para o texto */
+        }
+
+        .message .text {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666666;
+            margin: 0;
+        }
+
+        .message .text.text-1 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .toast .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            padding: 5px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .toast .close:hover {
+            opacity: 1;
+        }
+
+        .toast .progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+        }
+
+        .toast .progress:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #4070f4;
+            /* Cor padrão */
+        }
+
+        .progress.active:before {
+            animation: progress 5s linear forwards;
+        }
+
+        @keyframes progress {
+            100% {
+                right: 100%;
+            }
+        }
+
+        /* Categorias de notificações */
+        .toast.success .toast-content .icon,
+        .toast.success .progress:before {
+            background-color: #28a745;
+            /* Verde para sucesso */
+        }
+
+        .toast.success .message .text.text-1 {
+            color: #28a745;
+            /* Verde para sucesso */
+        }
+
+        .toast.warning .toast-content .icon,
+        .toast.warning .progress:before {
+            background-color: #ffc107;
+            /* Amarelo para alerta */
+        }
+
+        .toast.warning .message .text.text-1 {
+            color: #ffc107;
+            /* Amarelo para alerta */
+        }
+
+        .toast.error .toast-content .icon,
+        .toast.error .progress:before {
+            background-color: #dc3545;
+            /* Vermelho para erro */
+        }
+
+        .toast.error .message .text.text-1 {
+            color: #dc3545;
+            /* Vermelho para erro */
+        }
+
+        .toast.info .toast-content .icon,
+        .toast.info .progress:before {
+            background-color: #17a2b8;
+            /* Azul para informação */
+        }
+
+        .toast.info .message .text.text-1 {
+            color: #17a2b8;
+            /* Azul para informação */
+        }
+
+        .toast.critical .toast-content .icon,
+        .toast.critical .progress:before {
+            background-color: #343a40;
+            /* Preto para erro grave */
+        }
+
+        .toast.critical .message .text.text-1 {
+            color: #343a40;
+            /* Preto para erro grave */
+        }
+
+        .message .text {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666666;
+            word-wrap: break-word;
+            /* Quebra de palavras longas */
+            word-break: break-word;
+            /* Quebra de palavras longas */
+            white-space: normal;
+            /* Permite quebra de linha */
+            padding: 0px 0px 0px 70px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="notification">
+        <div class="toast-content">
+            <i class="icon"></i>
+            <div class="message">
+                <span class="text text-1">Success</span>
+                <span class="text text-2">Your changes have been saved</span>
+            </div>
+        </div>
+        <i class="fa-solid fa-xmark close"></i>
+        <div class="progress"></div>
+    </div>
+
+    <div class="view-counter" id="viewCounter">
+        <img src="https://img.icons8.com/?size=80&id=kL9QBTgoXwxO&format=png" alt="Visualizações" />
+        <span id="viewCount">0</span>
+    </div>
+
+    <div class="notification" id="notification">
+        <img src="" class="loading" alt="Loading">
+        <span> </span>
+    </div>
+
+    <div class="container-calculator">
+        <div class="logo-container">
+            <img src="https://copacabanasites.vercel.app/static/media/copacabanalogo.515061e0967c411f4d12.png" alt="Complexo RJ" />
+        </div>
+
+        <div class="search-container">
+            <div class="category-filter">
+                <select id="categorySelect">
+                    <option value="todos">Todos</option>
+                    <option value="armas">Armas</option>
+                    <option value="armas-brancas">Armas Brancas</option>
+                    <option value="drogas">Drogas</option>
+                    <option value="municao">Munição</option>
+                    <option value="recursos">Recursos</option>
+                    <option value="peixes">Peixes</option>
+                    <option value="outros-itens">Outros Itens</option>
+                </select>
+            </div>
+            <input type="text" id="searchBox" placeholder="Digite para pesquisar..." />
+        </div>
+
+        <div class="main-container">
+            <div class="items-container"></div>
+            <div class="selected-items-container">
+                <h3 class="selected-items-title">Itens selecionados:</h3>
+                <div id="selectedItemsList" class="selected-items-list"></div>
+            </div>
+            <div class="calculator">
+                <h3>TOTAL (R$)</h3>
+                <div class="total">
+                    <span id="totalValue" class="total-value">0</span>
+                </div>
+                <button id="button" class="ready" onclick="clickButton();">
+                    <div class="message submitMessage">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 12.2">
+                            <polyline stroke="currentColor" points="2,7.1 6.5,11.1 11,7.1 " />
+                            <line stroke="currentColor" x1="6.5" y1="1.2" x2="6.5" y2="10.3" />
+                        </svg>
+                        <span class="button-text">Limpar</span>
+                    </div>
+                    <div class="message loadingMessage">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 17">
+                            <circle class="loadingCircle" cx="2.2" cy="10" r="1.6" />
+                            <circle class="loadingCircle" cx="9.5" cy="10" r="1.6" />
+                            <circle class="loadingCircle" cx="16.8" cy="10" r="1.6" />
+                        </svg>
+                    </div>
+                    <div class="message successMessage">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 11">
+                            <polyline stroke="currentColor" points="1.4,5.8 5.1,9.5 11.6,2.1 " />
+                        </svg>
+                        <span class="button-text">Limpo</span>
+                    </div>
+                </button>
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document
+            .getElementById("contrastToggle")
+            .addEventListener("click", function () {
+                document.body.classList.toggle("high-contrast");
+            });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            function clearAllFields() {
+
+                document.querySelectorAll(".item-quantity").forEach((input) => {
+                    input.value = "0";
+                });
+                setTimeout(() => {
+                    updateTotal();
+                }, 2000);
+            }
+
+            const clearButton = document.getElementById("button");
+            clearButton.addEventListener("click", clearAllFields);
+
+            function createSnowflake() {
+                const snowflake = document.createElement("div");
+                snowflake.className = "snowflake";
+                snowflake.innerHTML = " ";
+                snowflake.style.opacity = "0.5"; // Define a opacidade para 20%
+                snowflake.style.left = Math.random() * 100 + "vw";
+                snowflake.style.animationDuration = Math.random() * 5 + 5 + "s";
+                document.body.appendChild(snowflake);
+
+                snowflake.addEventListener("animationiteration", () => {
+                    snowflake.remove();
+                });
+            }
+
+            setInterval(createSnowflake, 100);
+
+            const itemsContainer = document.querySelector(".items-container");
+            const totalValue = document.getElementById("totalValue");
+
+            const items = [
+                { name: "parafal", price: 3825000, categoria: "armas" },
+                {
+                    name: "specialcarbine_mk2 (G36)",
+                    price: 2550000,
+                    categoria: "armas",
+                },
+                { name: "snspistol (HK)", price: 2380000, categoria: "armas" },
+                { name: "scarh", price: 2040000, categoria: "armas" },
+                { name: "carbinerifle (M4A1)", price: 1785000, categoria: "armas" },
+                { name: "assaultsmg (MTAR-21)", price: 1615000, categoria: "armas" },
+                {
+                    name: "assaultrifle_mk2 (AK47)",
+                    price: 1275000,
+                    categoria: "armas",
+                },
+                { name: "ak47 (AK47-ADD)", price: 1275000, categoria: "armas" },
+                { name: "assaultrifle (AK-103)", price: 1275000, categoria: "armas" },
+                { name: "navycarbine", price: 1062000, categoria: "armas" },
+                { name: "machinepistol (TEC-9)", price: 552000, categoria: "armas" },
+                { name: "mp9", price: 238000, categoria: "armas" },
+                { name: "pistol_mk2 (Five 7)", price: 297000, categoria: "armas" },
+                {
+                    name: "combatpistol (Glock 19)",
+                    price: 350000,
+                    categoria: "armas",
+                },
+                { name: "microsmg (UZI)", price: 350000, categoria: "armas" },
+                { name: "smg (MP5)", price: 1000000, categoria: "armas" },
+                { name: "gusenberg (Thompson)", price: 640000, categoria: "armas" },
+                { name: "stungun (Taser)", price: 5000000, categoria: "armas" },
+                { name: "hk416", price: 2380000, categoria: "armas" },
+                { name: "pistol50", price: 320000, categoria: "armas" },
+                { name: "m9a3", price: 500000, categoria: "armas" },
+                { name: "nsr", price: 3900000, categoria: "armas" },
+                { name: "scorpionevo", price: 690000, categoria: "armas" },
+                {
+                    name: "carbinerifle_mk2 (M4A4)",
+                    price: 2400000,
+                    categoria: "armas",
+                },
+                { name: "combatpdw (Sig Sauer)", price: 0, categoria: "armas" },
+                { name: "ar10a4 (AR10)", price: 0, categoria: "armas" },
+                { name: "pumpshotgun (Escopeta)", price: 0, categoria: "armas" },
+
+                { name: "Munição de Parafal", price: 5400, categoria: "municao" },
+                { name: "Munição de G36", price: 4800, categoria: "municao" },
+                { name: "Munição de HK", price: 3800, categoria: "municao" },
+                { name: "Munição de Scarh-H", price: 3600, categoria: "municao" },
+                { name: "Munição de M4A1", price: 3400, categoria: "municao" },
+                { name: "Munição de MTAR", price: 3250, categoria: "municao" },
+                { name: "Munição de AK47", price: 2900, categoria: "municao" },
+                { name: "Munição de Navycarbine", price: 2450, categoria: "municao" },
+                {
+                    name: "Munição de Machinepistol",
+                    price: 1950,
+                    categoria: "municao",
+                },
+                { name: "Munição de MP9", price: 1250, categoria: "municao" },
+                { name: "Munição de Pistol Mk2", price: 1450, categoria: "municao" },
+                {
+                    name: "Munição de Combatpistol",
+                    price: 2500,
+                    categoria: "municao",
+                },
+                { name: "Munição de Microsmg", price: 3000, categoria: "municao" },
+                { name: "Munição de SMG", price: 3000, categoria: "municao" },
+                { name: "Munição de Assaultsmg", price: 3250, categoria: "municao" },
+                { name: "Munição de Gusenberg", price: 3500, categoria: "municao" },
+                { name: "Munição de Snspistol", price: 3800, categoria: "municao" },
+                { name: "Munição de Pistol50", price: 2500, categoria: "municao" },
+                { name: "Munição de Scarh", price: 5000, categoria: "municao" },
+                { name: "Munição de Nsr", price: 12000, categoria: "municao" },
+                { name: "Munição de Scorpionevo", price: 4200, categoria: "municao" },
+                { name: "Munição de M4A4", price: 1000, categoria: "municao" },
+                {
+                    name: "Munição de combatpdw (Sig Sauer)",
+                    price: 0,
+                    categoria: "municao",
+                },
+                { name: "Munição de ar10a4 (AR10)", price: 0, categoria: "municao" },
+                { name: "Munição de Escopeta)", price: 0, categoria: "municao" },
+
+                { name: "Knife (Faca)", price: 250000, categoria: "armas-brancas" },
+                { name: "Bat (Taco)", price: 250000, categoria: "armas-brancas" },
+                { name: "Ticket", price: 60000, categoria: "armas-brancas" },
+                { name: "Notebook", price: 150000, categoria: "armas-brancas" },
+                {
+                    name: "Battleaxe (Machado)",
+                    price: 250000,
+                    categoria: "armas-brancas",
+                },
+                {
+                    name: "Knuckle (Soco-Inglês)",
+                    price: 250000,
+                    categoria: "armas-brancas",
+                },
+                {
+                    name: "Switchblade (Canivete)",
+                    price: 250000,
+                    categoria: "armas-brancas",
+                },
+
+                { name: "Algemas", price: 100000, categoria: "outros-itens" },
+                { name: "Master Pick", price: 100000, categoria: "outros-itens" },
+                { name: "C4", price: 100000, categoria: "outros-itens" },
+                { name: "Lock Pick", price: 100000, categoria: "outros-itens" },
+                { name: "Nitro", price: 150000, categoria: "outros-itens" },
+                { name: "Colete", price: 220000, categoria: "outros-itens" },
+                { name: "Pe de Cabra", price: 120000, categoria: "outros-itens" },
+                { name: "Garrafa Vazia", price: 700, categoria: "outros-itens" },
+                { name: "Energético", price: 35000, categoria: "outros-itens" },
+                { name: "Roupas", price: 15000, categoria: "outros-itens" },
+                { name: "Radio", price: 10000, categoria: "outros-itens" },
+                { name: "Binoculos", price: 20000, categoria: "outros-itens" },
+                { name: "Repairkit", price: 35000, categoria: "outros-itens" },
+                { name: "Pneus", price: 2000, categoria: "outros-itens" },
+                { name: "Celular", price: 5000, categoria: "outros-itens" },
+                { name: "Militec", price: 35000, categoria: "outros-itens" },
+                { name: "Oxigênio", price: 30000, categoria: "outros-itens" },
+                { name: "Dorflex", price: 15000, categoria: "outros-itens" },
+                { name: "Aliança", price: 50000, categoria: "outros-itens" },
+                { name: "Cordas", price: 10000, categoria: "outros-itens" },
+                { name: "Mochila", price: 30000, categoria: "outros-itens" },
+                { name: "Paraquedas", price: 12000, categoria: "outros-itens" },
+                { name: "Bandagem", price: 135000, categoria: "outros-itens" },
+                { name: "Farm", price: 1000, categoria: "outros-itens" },
+                { name: "Capuz", price: 100000, categoria: "outros-itens" },
+                { name: "Placa", price: 100000, categoria: "outros-itens" },
+                { name: "Blacklist", price: 2000000, categoria: "outros-itens" },
+                { name: "Adrenalina", price: 250000, categoria: "outros-itens" },
+                { name: "Pedra de Crack", price: 0, categoria: "outros-itens" },
+                { name: "Lança Perfume", price: 0, categoria: "outros-itens" },
+                { name: "Ecstasy", price: 0, categoria: "outros-itens" },
+                { name: "Primeiros Socorros", price: 1000000, categoria: "outros-itens" },
+                { name: "Rose", price: 100000, categoria: "outros-itens" },
+                { name: "Teddy (Urso)", price: 100000, categoria: "outros-itens" },
+
+                { name: "Maconha (Venda)", price: 14900, categoria: "drogas" },
+                { name: "Maconha (Uso)", price: 10000, categoria: "drogas" },
+                { name: "Cocaína (Venda)", price: 14900, categoria: "drogas" },
+                { name: "Cocaína (Uso)", price: 10000, categoria: "drogas" },
+                { name: "Drogas (Unin.)", price: 10400, categoria: "drogas" },
+
+                { name: "Esmeralda", price: 800, categoria: "recursos" },
+                { name: "Ouro", price: 800, categoria: "recursos" },
+                { name: "Bronze", price: 600, categoria: "recursos" },
+                { name: "Topazio", price: 700, categoria: "recursos" },
+                { name: "Ferro", price: 600, categoria: "recursos" },
+                { name: "Ametista", price: 600, categoria: "recursos" },
+                { name: "Diamante", price: 900, categoria: "recursos" },
+                { name: "Safira", price: 700, categoria: "recursos" },
+                { name: "Rubi", price: 900, categoria: "recursos" },
+
+                { name: "Tucunare", price: 580, categoria: "peixes" },
+                { name: "Salmão", price: 500, categoria: "peixes" },
+                { name: "Dourado", price: 550, categoria: "peixes" },
+                { name: "Tilapia", price: 480, categoria: "peixes" },
+                { name: "Pirarucu", price: 500, categoria: "peixes" },
+                { name: "Corvina", price: 500, categoria: "peixes" },
+                { name: "Lambari", price: 100, categoria: "peixes" },
+                { name: "Pintado", price: 480, categoria: "peixes" },
+                { name: "Pacu", price: 480, categoria: "peixes" },
+            ];
+
+            function addItemsToContainer() {
+                items.forEach((item) => {
+                    const itemDiv = document.createElement("div");
+                    itemDiv.className = "item";
+                    itemDiv.setAttribute("data-category", item.categoria);
+
+                    const nameDiv = document.createElement("div");
+                    nameDiv.className = "item-name";
+                    nameDiv.textContent = item.name;
+
+                    const priceDiv = document.createElement("div");
+                    priceDiv.className = "item-price";
+                    priceDiv.textContent = `R$ ${item.price}`;
+
+                    const quantityInput = document.createElement("input");
+                    quantityInput.type = "number";
+                    quantityInput.value = "0";
+                    quantityInput.min = "0";
+                    quantityInput.className = "item-quantity";
+                    quantityInput.dataset.price = item.price;
+                    quantityInput.addEventListener("input", updateTotal);
+
+                    itemDiv.appendChild(nameDiv);
+                    itemDiv.appendChild(priceDiv);
+                    itemDiv.appendChild(quantityInput);
+                    itemsContainer.appendChild(itemDiv);
+                });
+            }
+
+            function setupFilter() {
+                document
+                    .getElementById("categorySelect")
+                    .addEventListener("change", function () {
+                        var selectedCategory = this.value;
+                        document.querySelectorAll(".item").forEach(function (itemDiv) {
+                            var itemCategory = itemDiv.getAttribute("data-category");
+                            if (
+                                selectedCategory === "todos" ||
+                                itemCategory === selectedCategory
+                            ) {
+                                itemDiv.style.display = "block";
+                            } else {
+                                itemDiv.style.display = "none";
+                            }
+                        });
+                    });
+            }
+
+            function updateSelectedItems() {
+                const selectedItemsList =
+                    document.getElementById("selectedItemsList");
+                selectedItemsList.innerHTML = "";
+
+                document.querySelectorAll(".item-quantity").forEach((input) => {
+                    const quantity = parseFloat(input.value);
+                    if (quantity > 0) {
+                        const itemName = input
+                            .closest(".item")
+                            .querySelector(".item-name").textContent;
+                        const itemDiv = document.createElement("div");
+                        itemDiv.className = "selected-item";
+                        itemDiv.textContent = `${itemName} - x ${quantity}`;
+                        selectedItemsList.appendChild(itemDiv);
+                    }
+                });
+            }
+
+            function updateTotal() {
+                let total = 0;
+                document.querySelectorAll(".item-quantity").forEach((input) => {
+                    const price = parseFloat(input.dataset.price);
+                    const quantity = parseFloat(input.value);
+                    if (!isNaN(price) && !isNaN(quantity)) {
+                        total += price * quantity;
+                    }
+                });
+                totalValue.textContent = total.toFixed(0).replace(".", ",");
+                updateSelectedItems();
+            }
+
+            addItemsToContainer();
+            setupFilter();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchBox = document.getElementById("searchBox");
+            const items = document.querySelectorAll(".item");
+
+            const notificationsEl = document.querySelector(".notifications");
+
+            function Notifications(el) {
+                this.el = el;
+
+                this.createDiv = function (className = "") {
+                    const el = document.createElement("div");
+                    el.classList.add(className);
+                    return el;
+                };
+
+                this.addText = function (el, text) {
+                    el.appendChild(document.createTextNode(text));
+                };
+
+                this.create = function (title = "Untitled notification", description = "", duration = 2, destroyOnClick = false, clickFunction = undefined) {
+                    const notiEl = this.createDiv("noti");
+                    const notiCardEl = this.createDiv("noticard");
+                    const glowEl = this.createDiv("notiglow");
+                    const borderEl = this.createDiv("notiborderglow");
+                    const titleEl = this.createDiv("notititle");
+                    const descriptionEl = this.createDiv("notidesc");
+
+                    this.addText(titleEl, title);
+                    this.addText(descriptionEl, description);
+
+                    notiEl.appendChild(notiCardEl);
+                    notiCardEl.appendChild(glowEl);
+                    notiCardEl.appendChild(borderEl);
+                    notiCardEl.appendChild(titleEl);
+                    notiCardEl.appendChild(descriptionEl);
+
+                    this.el.appendChild(notiEl);
+
+                    requestAnimationFrame(function () {
+                        notiEl.style.height = "calc(0.25rem + " + notiCardEl.getBoundingClientRect().height + "px)";
+                    });
+
+                    notiEl.addEventListener("mousemove", (event) => {
+                        const rect = notiCardEl.getBoundingClientRect();
+                        const localX = (event.clientX - rect.left) / rect.width;
+                        const localY = (event.clientY - rect.top) / rect.height;
+
+                        glowEl.style.left = localX * 100 + "%";
+                        glowEl.style.top = localY * 100 + "%";
+                        borderEl.style.left = localX * 100 + "%";
+                        borderEl.style.top = localY * 100 + "%";
+                    });
+
+                    if (clickFunction != undefined) {
+                        notiEl.addEventListener("click", clickFunction);
+                    }
+
+                    if (destroyOnClick) {
+                        notiEl.addEventListener("click", () => destroy(true));
+                    }
+
+                    if (duration != 0) {
+                        setTimeout(() => {
+                            notiEl.classList.add("out");
+                            notiEl.addEventListener("animationend", () => { notiEl.remove(); });
+                        }, duration * 1000);
+                    }
+
+                    function destroy(animate) {
+                        if (animate) {
+                            notiEl.classList.add("out");
+                            notiEl.addEventListener("animationend", () => { notiEl.remove(); });
+                        } else {
+                            notiEl.remove();
+                        }
+                    }
+                    return notiEl;
+                };
+            }
+
+            const notis = new Notifications(notificationsEl);
+
+            function performSearch() {
+                const searchText = searchBox.value.toLowerCase();
+                let found = false;
+                items.forEach((item) => {
+                    const itemName = item.querySelector(".item-name").textContent.toLowerCase();
+                    if (itemName.includes(searchText)) {
+                        item.style.display = "block";
+                        found = true;
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                if (!found) {
+
+                    showNotification("Não encontrado, tente novamente!", "warning", "fas fa-exclamation-circle");
+                }
+            }
+
+            searchBox.addEventListener("input", performSearch);
+        });
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchBox = document.getElementById("searchBox");
+            const items = document.querySelectorAll(".item");
+            const noResultsMessage = document.getElementById("noResultsMessage");
+
+            function performSearch() {
+                const searchText = searchBox.value.toLowerCase();
+                let found = false;
+                items.forEach((item) => {
+                    const itemName = item
+                        .querySelector(".item-name")
+                        .textContent.toLowerCase();
+                    if (itemName.includes(searchText)) {
+                        item.style.display = "block";
+                        found = true;
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+                noResultsMessage.style.display = found ? "none" : "block";
+            }
+
+            searchBox.addEventListener("input", performSearch);
+        });
+
+        async function checkPassword() {
+            try {
+                const response = await fetch("/get-password");
+                const data = await response.json();
+                const Password = data.password;
+
+                const inputPassword = prompt("Para acessar esse arquivo, digite a senha fornecida pelo servidor:");
+                if (inputPassword === Password) {
+                    window.location.href =
+                        "https://gamma.app/docs/Guia-staff-c89cuiiu7iap7f3";
+                    return false;
+                } else {
+                    alert("A senha informada não confere!");
+                    return false;
+                }
+            } catch (error) {
+                console.error("Erro ao verificar a senha:", error);
+                alert("Erro ao verificar a senha. Tente novamente mais tarde.");
+                return false;
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const viewCountElement = document.getElementById("viewCount");
+            const socket = io();
+
+            socket.on("connect", function () {
+                console.log("Connected to Socket.IO server");
+            });
+
+            socket.on("viewersCount", function (count) {
+                console.log("Viewers count:", count);
+                viewCountElement.textContent = count;
+            });
+
+            socket.on("disconnect", function () {
+                console.log("Disconnected from Socket.IO server");
+            });
+
+            socket.on("error", function (error) {
+                console.error("Socket.IO error:", error);
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuIcon = document.querySelector(".menu-icon");
+            const dropdowns = document.querySelectorAll(".dropdown");
+
+            menuIcon.addEventListener("click", function () {
+                dropdowns.forEach((dropdown) => {
+                    dropdown.style.display =
+                        dropdown.style.display === "block" ? "none" : "block";
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuIcon = document.querySelector(".menu-icon");
+            const dropdownContent = document.querySelector(".dropdown-content");
+
+            menuIcon.addEventListener("click", function () {
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        });
+
+        // ammount to add on each button press
+        const confettiCount = 20
+        const sequinCount = 10
+
+        // "physics" variables
+        const gravityConfetti = 0.3
+        const gravitySequins = 0.55
+        const dragConfetti = 0.075
+        const dragSequins = 0.02
+        const terminalVelocity = 3
+
+        // init other global elements
+        const button = document.getElementById('button')
+        var disabled = false
+        const canvas = document.getElementById('canvas')
+        const ctx = canvas.getContext('2d')
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        let cx = ctx.canvas.width / 2
+        let cy = ctx.canvas.height / 2
+
+        // add Confetto/Sequin objects to arrays to draw them
+        let confetti = []
+        let sequins = []
+
+        // colors, back side is darker for confetti flipping
+        const colors = [
+            { front: '#7b5cff', back: '#6245e0' }, // Purple
+            { front: '#b3c7ff', back: '#8fa5e5' }, // Light Blue
+            { front: '#5c86ff', back: '#345dd1' }  // Darker Blue
+        ]
+
+        // helper function to pick a random number within a range
+        randomRange = (min, max) => Math.random() * (max - min) + min
+
+        // helper function to get initial velocities for confetti
+        // this weighted spread helps the confetti look more realistic
+        initConfettoVelocity = (xRange, yRange) => {
+            const x = randomRange(xRange[0], xRange[1])
+            const range = yRange[1] - yRange[0] + 1
+            let y = yRange[1] - Math.abs(randomRange(0, range) + randomRange(0, range) - range)
+            if (y >= yRange[1] - 1) {
+                // Occasional confetto goes higher than the max
+                y += (Math.random() < .25) ? randomRange(1, 3) : 0
+            }
+            return { x: x, y: -y }
+        }
+
+        // Confetto Class
+        function Confetto() {
+            this.randomModifier = randomRange(0, 99)
+            this.color = colors[Math.floor(randomRange(0, colors.length))]
+            this.dimensions = {
+                x: randomRange(5, 9),
+                y: randomRange(8, 15),
+            }
+            this.position = {
+                x: randomRange(canvas.width / 2 - button.offsetWidth / 4, canvas.width / 2 + button.offsetWidth / 4),
+                y: randomRange(canvas.height / 2 + button.offsetHeight / 2 + 8, canvas.height / 2 + (1.5 * button.offsetHeight) - 8),
+            }
+            this.rotation = randomRange(0, 2 * Math.PI)
+            this.scale = {
+                x: 1,
+                y: 1,
+            }
+            this.velocity = initConfettoVelocity([-9, 9], [6, 11])
+        }
+        Confetto.prototype.update = function () {
+            // apply forces to velocity
+            this.velocity.x -= this.velocity.x * dragConfetti
+            this.velocity.y = Math.min(this.velocity.y + gravityConfetti, terminalVelocity)
+            this.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random()
+
+            // set position
+            this.position.x += this.velocity.x
+            this.position.y += this.velocity.y
+
+            // spin confetto by scaling y and set the color, .09 just slows cosine frequency
+            this.scale.y = Math.cos((this.position.y + this.randomModifier) * 0.09)
+        }
+
+        // Sequin Class
+        function Sequin() {
+            this.color = colors[Math.floor(randomRange(0, colors.length))].back,
+                this.radius = randomRange(1, 2),
+                this.position = {
+                    x: randomRange(canvas.width / 2 - button.offsetWidth / 3, canvas.width / 2 + button.offsetWidth / 3),
+                    y: randomRange(canvas.height / 2 + button.offsetHeight / 2 + 8, canvas.height / 2 + (1.5 * button.offsetHeight) - 8),
+                },
+                this.velocity = {
+                    x: randomRange(-6, 6),
+                    y: randomRange(-8, -12)
+                }
+        }
+        Sequin.prototype.update = function () {
+            // apply forces to velocity
+            this.velocity.x -= this.velocity.x * dragSequins
+            this.velocity.y = this.velocity.y + gravitySequins
+
+            // set position
+            this.position.x += this.velocity.x
+            this.position.y += this.velocity.y
+        }
+
+        // add elements to arrays to be drawn
+        initBurst = () => {
+            for (let i = 0; i < confettiCount; i++) {
+                confetti.push(new Confetto())
+            }
+            for (let i = 0; i < sequinCount; i++) {
+                sequins.push(new Sequin())
+            }
+        }
+
+        // draws the elements on the canvas
+        render = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+            confetti.forEach((confetto, index) => {
+                let width = (confetto.dimensions.x * confetto.scale.x)
+                let height = (confetto.dimensions.y * confetto.scale.y)
+
+                // move canvas to position and rotate
+                ctx.translate(confetto.position.x, confetto.position.y)
+                ctx.rotate(confetto.rotation)
+
+                // update confetto "physics" values
+                confetto.update()
+
+                // get front or back fill color
+                ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back
+
+                // draw confetto
+                ctx.fillRect(-width / 2, -height / 2, width, height)
+
+                // reset transform matrix
+                ctx.setTransform(1, 0, 0, 1, 0, 0)
+
+                // clear rectangle where button cuts off
+                if (confetto.velocity.y < 0) {
+                    ctx.clearRect(canvas.width / 2 - button.offsetWidth / 2, canvas.height / 2 + button.offsetHeight / 2, button.offsetWidth, button.offsetHeight)
+                }
+            })
+
+            sequins.forEach((sequin, index) => {
+                // move canvas to position
+                ctx.translate(sequin.position.x, sequin.position.y)
+
+                // update sequin "physics" values
+                sequin.update()
+
+                // set the color
+                ctx.fillStyle = sequin.color
+
+                // draw sequin
+                ctx.beginPath()
+                ctx.arc(0, 0, sequin.radius, 0, 2 * Math.PI)
+                ctx.fill()
+
+                // reset transform matrix
+                ctx.setTransform(1, 0, 0, 1, 0, 0)
+
+                // clear rectangle where button cuts off
+                if (sequin.velocity.y < 0) {
+                    ctx.clearRect(canvas.width / 2 - button.offsetWidth / 2, canvas.height / 2 + button.offsetHeight / 2, button.offsetWidth, button.offsetHeight)
+                }
+            })
+
+            // remove confetti and sequins that fall off the screen
+            // must be done in seperate loops to avoid noticeable flickering
+            confetti.forEach((confetto, index) => {
+                if (confetto.position.y >= canvas.height) confetti.splice(index, 1)
+            })
+            sequins.forEach((sequin, index) => {
+                if (sequin.position.y >= canvas.height) sequins.splice(index, 1)
+            })
+
+            window.requestAnimationFrame(render)
+        }
+
+        // cycle through button states when clicked
+        clickButton = () => {
+            if (!disabled) {
+                disabled = true
+                // Loading stage
+                button.classList.add('loading')
+                button.classList.remove('ready')
+                setTimeout(() => {
+                    // Completed stage
+                    button.classList.add('complete')
+                    button.classList.remove('loading')
+                    setTimeout(() => {
+                        window.initBurst()
+                        setTimeout(() => {
+                            // Reset button so user can select it again
+                            disabled = false
+                            button.classList.add('ready')
+                            button.classList.remove('complete')
+                        }, 4000)
+                    }, 320)
+                }, 1800)
+            }
+        }
+
+        // re-init canvas if the window size changes
+        resizeCanvas = () => {
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+            cx = ctx.canvas.width / 2
+            cy = ctx.canvas.height / 2
+        }
+
+        // resize listenter
+        window.addEventListener('resize', () => {
+            resizeCanvas()
+        })
+
+        // click button on spacebar or return keypress
+        document.body.onkeyup = (e) => {
+            if (e.keyCode == 13 || e.keyCode == 32) {
+                clickButton()
+            }
+        }
+
+        // Set up button text transition timings on page load
+        textElements = button.querySelectorAll('.button-text')
+        textElements.forEach((element) => {
+            characters = element.innerText.split('')
+            let characterHTML = ''
+            characters.forEach((letter, index) => {
+                characterHTML += `<span class="char${index}" style="--d:${index * 30}ms; --dr:${(characters.length - index - 1) * 30}ms;">${letter}</span>`
+            })
+            element.innerHTML = characterHTML
+        })
+
+        // kick off the render loop
+        window.initBurst()
+        render()
+
+        function showNotification(message, type = 'info', icon = 'fas fa-info-circle') {
+            const toast = document.getElementById('notification');
+            const progress = toast.querySelector('.progress');
+            const closeIcon = toast.querySelector('.close');
+            const messageElement = toast.querySelector('.message .text-2');
+            const titleElement = toast.querySelector('.message .text-1');
+            const iconElement = toast.querySelector('.icon');
+
+            messageElement.textContent = message || `Houve um problema no sistema.`;
+            iconElement.className = `icon ${icon}`; // Adiciona a classe de ícone
+
+            // Remove todas as classes de tipo e adiciona a nova classe de tipo
+            toast.classList.remove('success', 'warning', 'error', 'info', 'critical');
+            toast.classList.add(type);
+
+            // Atualiza o título conforme o tipo
+            switch (type) {
+                case 'success':
+                    titleElement.textContent = 'Sucesso';
+                    break;
+                case 'warning':
+                    titleElement.textContent = 'Alerta';
+                    break;
+                case 'error':
+                    titleElement.textContent = 'Erro';
+                    break;
+                case 'critical':
+                    titleElement.textContent = 'Erro Grave';
+                    break;
+                default:
+                    titleElement.textContent = 'Informação';
+            }
+
+            // Ajusta o tamanho do balão conforme o conteúdo da mensagem
+            const charCount = message.length;
+            const baseWidth = 800; // Largura mínima base
+            const charWidth = 9.5; // Largura média de um caractere em pixels (ajustar conforme necessário)
+            const minWidth = Math.min(baseWidth, charCount * charWidth);
+            const maxWidth = Math.min(100, charCount * charWidth); // Ajuste conforme necessário
+
+            toast.style.minWidth = `${minWidth}px`;
+            toast.style.maxWidth = `${maxWidth}px`;
+
+            // Exibe a notificação
+            toast.classList.add('active');
+            progress.classList.add('active');
+
+            let timer1 = setTimeout(() => {
+                toast.classList.remove('active');
+            }, 5000);
+
+            let timer2 = setTimeout(() => {
+                progress.classList.remove('active');
+            }, 5300);
+
+            closeIcon.addEventListener('click', () => {
+                toast.classList.remove('active');
+                setTimeout(() => {
+                    progress.classList.remove('active');
+                }, 300);
+
+                clearTimeout(timer1);
+                clearTimeout(timer2);
+            });
+        }
+
+
+
+        // Exemplo de como chamar a função com ícones Font Awesome
+        //showNotification("Sua operação foi um sucesso!", "success", "fas fa-check-circle");
+        //showNotification("Atenção, verifique os dados.", "warning", "fas fa-exclamation-circle");
+        //showNotification("Erro ao realizar a operação!", "error", "fas fa-times-circle");
+        //showNotification("Informação importante.", "info", "fas fa-info-circle");
+        //showNotification("Erro crítico no sistema!", "critical", "fas fa-skull-crossbones");
+        showNotification("Seja bem-vindo(a)!", "info", "fas fa-smile");
+
+        // Exemplo de como chamar a função com imagens PNG
+        //showNotification("Sua operação foi um sucesso!", "success", "/images/success.png");
+        //showNotification("Atenção, verifique os dados.", "warning", "/images/warning.png");
+        //showNotification("Erro ao realizar a operação!", "error", "/images/error.png");
+        //showNotification("Informação importante.", "info", "/images/info.png");
+        //showNotification("Erro crítico no sistema!", "critical", "/images/critical.png");
+        //showNotification("Bem-vindo ao sistema de Ranking!", "info", "/images/welcome.png");
+
+
+    </script>
+
+</body>
+
+</html>
