@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking da Pelada</title>
+    <title>Cadastro de Jogadores</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <header>
-        <h1>Ranking da Pelada</h1>
+        <h1>Cadastro de Jogadores</h1>
         <nav>
             <ul>
                 <li><a href="/index.html">Início</a></li>
@@ -19,11 +19,15 @@
         </nav>
     </header>
     <main>
-        <h2>Bem-vindo ao Ranking da Pelada!</h2>
-        <p>Acompanhe os resultados e rankings dos jogadores.</p>
+        <form id="cadastro-form">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <button type="submit">Cadastrar</button>
+        </form>
     </main>
     <footer>
         <p>&copy; 2024 Ranking da Pelada</p>
     </footer>
+    <script src="/script.js"></script>
 </body>
 </html>
