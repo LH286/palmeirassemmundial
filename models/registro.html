@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Partidas</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>Registro de Partidas</h1>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Início</a></li>
+                <li><a href="/cadastro.html">Cadastro de Jogadores</a></li>
+                <li><a href="/registro.html">Registro de Partidas</a></li>
+                <li><a href="/ranking.html">Ranking</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="registro-form">
+            <label for="jogador">Jogador:</label>
+            <select id="jogador" name="jogador">
+                <!-- Opções serão preenchidas dinamicamente -->
+            </select>
+            <label for="gols">Gols:</label>
+            <input type="number" id="gols" name="gols" required>
+            <label for="assistencias">Assistências:</label>
+            <input type="number" id="assistencias" name="assistencias" required>
+            <button type="submit">Registrar</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Ranking da Pelada</p>
+    </footer>
+    <script src="/script.js"></script>
+</body>
+</html>
